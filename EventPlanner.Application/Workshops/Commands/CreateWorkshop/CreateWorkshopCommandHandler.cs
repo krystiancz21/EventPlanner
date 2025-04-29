@@ -1,0 +1,24 @@
+﻿using AutoMapper;
+using EventPlanner.Application.Workshops.Queries.GetAllWorkshops;
+using EventPlanner.Domain.Entities;
+using EventPlanner.Domain.Repositories;
+using MediatR;
+using Microsoft.Extensions.Logging;
+
+namespace EventPlanner.Application.Workshops.Commands.CreateWorkshop;
+
+public class CreateWorkshopCommandHandler(ILogger<GetAllWorkshopQueryHandler> logger,
+    IMapper mapper,
+    IWorkshopsRepository workshopsRepository) : IRequestHandler<CreateWorkshopCommand, int>
+{
+    public async Task<int> Handle(CreateWorkshopCommand request, CancellationToken cancellationToken)
+    {
+        logger.LogInformation("Creating a new workshop");
+
+        var workshop = mapper.Map<Workshop>(request);
+
+        int workshopId = await workshopsRepository.Create(workshop);
+        
+        return workshopId;
+    }
+}

@@ -1,0 +1,18 @@
+@EventPlanner.API_HostAddress = http://localhost:5298
+
+GET {{EventPlanner.API_HostAddress}}/api/workshops
+Accept: application/json
+
+###
+
+POST {{EventPlanner.API_HostAddress}}/api/workshops
+Content-Type: application/json
+{
+  "title": "Konferencja Technologiczna 2025",
+  "description": "Wydarzenie poœwiêcone nowinkom technologicznym i innowacjom w bran¿y IT.",
+  "location": "Warszawa, Centrum Konferencyjne XYZ",
+  "date": "2025-04-29",
+  "capacity": 300,
+  "organizerId": "12345"
+}
+###
