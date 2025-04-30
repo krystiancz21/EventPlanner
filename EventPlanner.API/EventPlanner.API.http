@@ -1,18 +1,56 @@
-@EventPlanner.API_HostAddress = http://localhost:5298
+@EventPlanner.API_HostAddress = https://localhost:7222
 
 GET {{EventPlanner.API_HostAddress}}/api/workshops
 Accept: application/json
 
 ###
 
+
+GET {{EventPlanner.API_HostAddress}}/api/workshops/7
+
+###
+
+
 POST {{EventPlanner.API_HostAddress}}/api/workshops
 Content-Type: application/json
 {
-  "title": "Konferencja Technologiczna 2025",
+  "title": "Konferencja Technologiczna 2021",
   "description": "Wydarzenie poœwiêcone nowinkom technologicznym i innowacjom w bran¿y IT.",
   "location": "Warszawa, Centrum Konferencyjne XYZ",
   "date": "2025-04-29",
   "capacity": 300,
   "organizerId": "12345"
+}
+###
+
+PATCH {{EventPlanner.API_HostAddress}}/api/workshops/7
+Content-Type: application/json
+{
+  "title": "Konferencja Technologiczna 2050",
+  "description": "Wydarzenie poœwiêcone nowinkom technologicznym i innowacjom w bran¿y IT.",
+  "location": "Warszawa, Centrum Konferencyjne ZYX",
+  "date": "2025-04-23",
+  "capacity": 150
+}
+###
+
+
+DELETE {{EventPlanner.API_HostAddress}}/api/workshops/7
+
+###
+
+POST {{EventPlanner.API_HostAddress}}/register
+Content-Type: application/json
+{
+    "email": "testuser@test.com",
+    "password": "Password1!"
+}
+###
+
+POST {{EventPlanner.API_HostAddress}}/login
+Content-Type: application/json
+{
+    "email": "testuser@test.com",
+    "password": "Password1!"
 }
 ###

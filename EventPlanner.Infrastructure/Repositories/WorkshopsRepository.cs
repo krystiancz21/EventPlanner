@@ -14,6 +14,12 @@ internal class WorkshopsRepository(EventPlannerDbContext dbContext): IWorkshopsR
         return entity.Id;
     }
 
+    public async Task Delete(Workshop entity)
+    {
+        dbContext.Workshops.Remove(entity);
+        await dbContext.SaveChangesAsync();
+    }
+
     public async Task<IEnumerable<Workshop>> GetAllAsync()
     {
         var workshops = await dbContext.Workshops.ToListAsync();
@@ -26,4 +32,7 @@ internal class WorkshopsRepository(EventPlannerDbContext dbContext): IWorkshopsR
         var workshop = await dbContext.Workshops.FirstOrDefaultAsync(w => w.Id == id);
         return workshop;
     }
+
+    public Task SaveChanges()
+    => dbContext.SaveChangesAsync();
 }

@@ -1,4 +1,7 @@
 ﻿using EventPlanner.Application.Workshops.Commands.CreateWorkshop;
+using EventPlanner.Application.Workshops.Commands.DeleteWorkshop;
+using EventPlanner.Application.Workshops.Commands.UpdateWorkshop;
+using EventPlanner.Application.Workshops.Dtos;
 using EventPlanner.Application.Workshops.Queries.GetAllWorkshops;
 using EventPlanner.Application.Workshops.Queries.GetWorkshopById;
 using MediatR;
@@ -11,14 +14,14 @@ namespace EventPlanner.API.Controllers;
 public class WorkshopsController(IMediator mediator) : ControllerBase
 {
     [HttpGet]
-    public async Task<IActionResult> GetAll()
+    public async Task<ActionResult<IEnumerable<WorkshopDto>>> GetAll()
     {
         var workshops = await mediator.Send(new GetAllWorkshopQuery());
         return Ok(workshops);
     }
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetById([FromRoute] int id)
+    public async Task<ActionResult<WorkshopDto?>> GetById([FromRoute] int id)
     {
         var workshop = await mediator.Send(new GetWorkshopByIdQuery(id));
         return Ok(workshop);
@@ -31,20 +34,24 @@ public class WorkshopsController(IMediator mediator) : ControllerBase
         return CreatedAtAction(nameof(GetAll), new { id = workshopId }, null);
     }
 
-    //[HttpPatch("{id}")]
-    //public async Task<IActionResult> UpdateWorkshop([FromRoute] int id, UpdateWorkshopCommand command)
-    //{
-    //    command.Id = id;
-    //    await mediator.Send(command);
+    [HttpPatch("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> UpdateWorkshop([FromRoute] int id, UpdateWorkshopCommand command)
+    {
+        command.Id = id;
+        await mediator.Send(command);
 
-    //    return NoContent();
-    //}
+        return NoContent();
+    }
 
-    //[HttpDelete("{id}")]
-    //public async Task<IActionResult> DeleteWorkshop([FromRoute] int id)
-    //{
-    //    await mediator.Send(new DeleteWorkshopCommand(id));
+    [HttpDelete("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> DeleteWorkshop([FromRoute] int id)
+    {
+        await mediator.Send(new DeleteWorkshopCommand(id));
 
-    //    return NoContent();
-    //}
+        return NoContent();
+    }
 }

@@ -13,7 +13,7 @@ public class CreateWorkshopCommandHandler(ILogger<GetAllWorkshopQueryHandler> lo
 {
     public async Task<int> Handle(CreateWorkshopCommand request, CancellationToken cancellationToken)
     {
-        logger.LogInformation("Creating a new workshop");
+        logger.LogInformation("Creating a new workshop {@Workshop}", request);
 
         var workshop = mapper.Map<Workshop>(request);
 

@@ -15,8 +15,8 @@ public class GetWorkshopByIdQueryHandler(ILogger<GetAllWorkshopQueryHandler> log
     public async Task<WorkshopDto> Handle(GetWorkshopByIdQuery request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Getting workshop by id {WorkshopId}", request.Id);
-        var workshop = await workshopsRepository.GetByIdAsync(request.Id);
-            //?? throw new NotFoundException(nameof(Workshops), request.Id.ToString());
+        var workshop = await workshopsRepository.GetByIdAsync(request.Id)
+            ?? throw new NotFoundException(nameof(Workshops), request.Id.ToString());
         var workshopDto = mapper.Map<WorkshopDto>(workshop);
 
         return workshopDto;

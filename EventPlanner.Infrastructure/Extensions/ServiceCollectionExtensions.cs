@@ -1,7 +1,9 @@
-﻿using EventPlanner.Domain.Repositories;
+﻿using EventPlanner.Domain.Entities;
+using EventPlanner.Domain.Repositories;
 using EventPlanner.Infrastructure.Persistence;
 using EventPlanner.Infrastructure.Repositories;
 using EventPlanner.Infrastructure.Seeders;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,7 +16,14 @@ public static class ServiceCollectionExtensions
     {
         var connectionString = configuration.GetConnectionString("EventPlannerDb");
 
-        services.AddDbContext<EventPlannerDbContext>(options => options.UseSqlServer(connectionString));
+        services.AddDbContext<EventPlannerDbContext>(options => 
+            options.UseSqlServer(connectionString)
+            .EnableSensitiveDataLogging());
+
+        services.AddIdentityApiEndpoints<User>()
+            .AddEntityFrameworkStores<EventPlannerDbContext>();
+            //.AddRoles<IdentityRole>()
+            //.AddClaimsPrincipalFactory<RestaurantsUserClaimsPrincipalFactory>()
 
         services.AddScoped<IWorkshopSeeder, WorkshopSeeder>();
         services.AddScoped<IWorkshopsRepository, WorkshopsRepository>();
