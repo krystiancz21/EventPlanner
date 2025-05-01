@@ -4,6 +4,7 @@ using EventPlanner.Application.Workshops.Commands.UpdateWorkshop;
 using EventPlanner.Application.Workshops.Dtos;
 using EventPlanner.Application.Workshops.Queries.GetAllWorkshops;
 using EventPlanner.Application.Workshops.Queries.GetWorkshopById;
+using EventPlanner.Domain.Constants;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -24,17 +25,12 @@ public class WorkshopsController(IMediator mediator) : ControllerBase
     }
 
     [HttpGet("{id}")]
+    //[Authorize(Policy = PolicyNames.HasNationality)]
+    //[Authorize(Policy = PolicyNames.AtLeast18)]
     public async Task<ActionResult<WorkshopDto?>> GetById([FromRoute] int id)
     {
         var workshop = await mediator.Send(new GetWorkshopByIdQuery(id));
         return Ok(workshop);
-    }
-
-    [HttpPost]
-    public async Task<IActionResult> CreateWorkshop([FromBody] CreateWorkshopCommand command)
-    {
-        var workshopId = await mediator.Send(command);
-        return CreatedAtAction(nameof(GetAll), new { id = workshopId }, null);
     }
 
     [HttpPatch("{id}")]
@@ -56,5 +52,13 @@ public class WorkshopsController(IMediator mediator) : ControllerBase
         await mediator.Send(new DeleteWorkshopCommand(id));
 
         return NoContent();
+    }
+
+    [HttpPost]
+    [Authorize(Roles = UserRoles.Owner)]
+    public async Task<IActionResult> CreateWorkshop([FromBody] CreateWorkshopCommand command)
+    {
+        var workshopId = await mediator.Send(command);
+        return CreatedAtAction(nameof(GetAll), new { id = workshopId }, null);
     }
 }

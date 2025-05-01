@@ -1,5 +1,7 @@
-﻿using EventPlanner.Domain.Entities;
+﻿using EventPlanner.Domain.Constants;
+using EventPlanner.Domain.Entities;
 using EventPlanner.Infrastructure.Persistence;
+using Microsoft.AspNetCore.Identity;
 
 namespace EventPlanner.Infrastructure.Seeders;
 
@@ -15,7 +17,35 @@ internal class WorkshopSeeder(EventPlannerDbContext dbContext) : IWorkshopSeeder
                 dbContext.Workshops.AddRange(workshops);
                 await dbContext.SaveChangesAsync();
             }
+
+            if (!dbContext.Roles.Any())
+            {
+                var roles = GetRoles();
+                dbContext.Roles.AddRange(roles);
+                await dbContext.SaveChangesAsync();
+            }
         }
+    }
+
+    private IEnumerable<IdentityRole> GetRoles()
+    {
+        List<IdentityRole> roles =
+            [
+                new (UserRoles.User)
+                {
+                    NormalizedName = UserRoles.User.ToUpper(),
+                },
+                new (UserRoles.Owner)
+                {
+                    NormalizedName = UserRoles.Owner.ToUpper(),
+                },
+                new (UserRoles.Admin)
+                {
+                    NormalizedName = UserRoles.Admin.ToUpper(),
+                },
+            ];
+
+        return roles;
     }
 
     private IEnumerable<Workshop> GetWorkshops()

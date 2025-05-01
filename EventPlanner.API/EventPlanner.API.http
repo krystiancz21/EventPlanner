@@ -1,5 +1,5 @@
 @EventPlanner.API_HostAddress = https://localhost:7222
-@token = Cdf
+@token = CfDJ8GSoay1OjtRNhv4OPGnASShtcW4xwmXbg3089EF6M7Br2K9P16D6PLiIdjA8uAqISLDalhZo-Qe89ASyGuPhNK_j8S7ZEdWEQiojb7iHBKCHNWjCUcRwCqKq_gEZJ8TQIlVdLv6oay-fm88W0A_Ya7OEOpYSAotJ4bYgGz0mCAesc-sYDzXjf8FQAkSAKQLTCyNuhTrSROurYDRnpKbWDW5-cibQ9iJc5wQl-tTQLHdJ2bbrMFPVT0mxe8JFfDbdrqmGDh9N48PU68B3NDIIwo91ETrOmRAUbi2Px9hwazyKXYNHgvE6RmcbFhECvnOk-L4uCG14q39q-7QCxtAJUV_jbyzQNFMm2plXnleBHSPhyJPCTDin-5x2RADyIwh6KgQwnxjb8qfFwLBSItqjPPIZbmUadhN-D-8eVn9LgJs_dzMX0YupzejWEngbU4edssg7YHncACCVrbqTZnELZXKwrGe0sK4Za5CvZUjQBMhZATxX4m4sX7d501wIrYEAXfACJwwOCmeEp74hFgs9ckYG5O5CfgA_deokFsddZGv-3-0gJpi7TfOzfv1utyVxFOq8YTGHEABIQDTvomrSAWL-EyR0ZM77Gz-c2IHgne7mHJanjFkBH9NEo8QNffkv19YmpHWVjlnHGodayPWU7VT9dyS2N13IPXzVTkokn_dc3zD_IQHnFA0xYjIPdkyHTYmrTnsX8S9n14stEqMN-xxj2qJFVksXZCk7BetB24lcw3Qsvcjme64WJUNhBee5RCtq0RpWNN-BzZZpSdiyavdDDIzcpukapfoNwcONCj0K
 
 GET {{EventPlanner.API_HostAddress}}/api/workshops
 Accept: application/json
@@ -14,14 +14,14 @@ GET {{EventPlanner.API_HostAddress}}/api/workshops/7
 
 
 POST {{EventPlanner.API_HostAddress}}/api/workshops
+Authorization: Bearer {{token}}
 Content-Type: application/json
 {
   "title": "Konferencja Technologiczna 2021",
   "description": "Wydarzenie poœwiêcone nowinkom technologicznym i innowacjom w bran¿y IT.",
   "location": "Warszawa, Centrum Konferencyjne XYZ",
   "date": "2025-04-29",
-  "capacity": 300,
-  "organizerId": "12345"
+  "capacity": 300
 }
 ###
 
@@ -44,7 +44,7 @@ DELETE {{EventPlanner.API_HostAddress}}/api/workshops/7
 POST {{EventPlanner.API_HostAddress}}/api/identity/register
 Content-Type: application/json
 {
-    "email": "testuser@test.com",
+    "email": "user@test.com",
     "password": "Password1!"
 }
 ###
@@ -52,7 +52,7 @@ Content-Type: application/json
 POST {{EventPlanner.API_HostAddress}}/api/identity/login
 Content-Type: application/json
 {
-    "email": "testuser@test.com",
+    "email": "owner@test.com",
     "password": "Password1!"
 }
 ###
