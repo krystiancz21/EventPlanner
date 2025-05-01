@@ -3,7 +3,6 @@ using EventPlanner.Domain.Repositories;
 using EventPlanner.Infrastructure.Persistence;
 using EventPlanner.Infrastructure.Repositories;
 using EventPlanner.Infrastructure.Seeders;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

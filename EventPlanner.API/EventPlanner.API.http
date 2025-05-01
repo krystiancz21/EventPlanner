@@ -1,7 +1,9 @@
 @EventPlanner.API_HostAddress = https://localhost:7222
+@token = Cdf
 
 GET {{EventPlanner.API_HostAddress}}/api/workshops
 Accept: application/json
+Authorization: Bearer {{token}}
 
 ###
 
@@ -39,7 +41,7 @@ DELETE {{EventPlanner.API_HostAddress}}/api/workshops/7
 
 ###
 
-POST {{EventPlanner.API_HostAddress}}/register
+POST {{EventPlanner.API_HostAddress}}/api/identity/register
 Content-Type: application/json
 {
     "email": "testuser@test.com",
@@ -47,7 +49,7 @@ Content-Type: application/json
 }
 ###
 
-POST {{EventPlanner.API_HostAddress}}/login
+POST {{EventPlanner.API_HostAddress}}/api/identity/login
 Content-Type: application/json
 {
     "email": "testuser@test.com",

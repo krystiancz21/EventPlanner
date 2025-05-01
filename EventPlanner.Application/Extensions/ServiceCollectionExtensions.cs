@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using EventPlanner.Application.Users;
+using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,8 +18,9 @@ public static class ServiceCollectionExtensions
         services.AddValidatorsFromAssembly(applicationAssembly)
             .AddFluentValidationAutoValidation();
 
-        //services.AddScoped<IUserContext, UserContext>();
-        //services.AddHttpContextAccessor();
+        services.AddScoped<IUserContext, UserContext>();
+
+        services.AddHttpContextAccessor();
     }
 }
 
