@@ -30,8 +30,9 @@ public static class ServiceCollectionExtensions
             .AddClaimsPrincipalFactory<RestaurantsUserClaimsPrincipalFactory>()
             .AddEntityFrameworkStores<EventPlannerDbContext>();
 
-        services.AddScoped<IWorkshopSeeder, WorkshopSeeder>();
+        services.AddScoped<IEventPlannerSeeder, WorkshopSeeder>();
         services.AddScoped<IWorkshopsRepository, WorkshopsRepository>();
+        services.AddScoped<IReservationsRepository, ReservationsRepository>();
 
         services.AddAuthorizationBuilder()
             .AddPolicy(PolicyNames.HasNationality,

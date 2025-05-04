@@ -1,5 +1,5 @@
 @EventPlanner.API_HostAddress = https://localhost:7222
-@token = CfDJ8GSoay1OjtRNhv4OPGnASShtcW4xwmXbg3089EF6M7Br2K9P16D6PLiIdjA8uAqISLDalhZo-Qe89ASyGuPhNK_j8S7ZEdWEQiojb7iHBKCHNWjCUcRwCqKq_gEZJ8TQIlVdLv6oay-fm88W0A_Ya7OEOpYSAotJ4bYgGz0mCAesc-sYDzXjf8FQAkSAKQLTCyNuhTrSROurYDRnpKbWDW5-cibQ9iJc5wQl-tTQLHdJ2bbrMFPVT0mxe8JFfDbdrqmGDh9N48PU68B3NDIIwo91ETrOmRAUbi2Px9hwazyKXYNHgvE6RmcbFhECvnOk-L4uCG14q39q-7QCxtAJUV_jbyzQNFMm2plXnleBHSPhyJPCTDin-5x2RADyIwh6KgQwnxjb8qfFwLBSItqjPPIZbmUadhN-D-8eVn9LgJs_dzMX0YupzejWEngbU4edssg7YHncACCVrbqTZnELZXKwrGe0sK4Za5CvZUjQBMhZATxX4m4sX7d501wIrYEAXfACJwwOCmeEp74hFgs9ckYG5O5CfgA_deokFsddZGv-3-0gJpi7TfOzfv1utyVxFOq8YTGHEABIQDTvomrSAWL-EyR0ZM77Gz-c2IHgne7mHJanjFkBH9NEo8QNffkv19YmpHWVjlnHGodayPWU7VT9dyS2N13IPXzVTkokn_dc3zD_IQHnFA0xYjIPdkyHTYmrTnsX8S9n14stEqMN-xxj2qJFVksXZCk7BetB24lcw3Qsvcjme64WJUNhBee5RCtq0RpWNN-BzZZpSdiyavdDDIzcpukapfoNwcONCj0K
+@token = CfDJ8GSoay1OjtRNhv4OPGnASSgjdygyuBpvwL-4SctqMRpUB2uRd4oBCkmjAh1T0go000q2pe8y5y7vI5pz4bGFE4pBsZmr54nlBhDvAkOFhMYVAYNnvw9dkuqnVcebEwQpg-w8jSXZhhdYEU5_isFCdlRiTz5IZm2HHM-SE4DTjVMOuzsgIVK_NQvdgSkM8P5oNOrq_bE5NVLkhvkL8SvbQaCJ3d_qonUAJBuIExyg4rZXpYr1uI0vilKT5z6XuWbYEcbVadwE0EPd8h5VKjHsNVRjC3YFuGdcUAjLGr544NleBy0OHTJCJLS-xF2hfNSURArN8FxNfoz57vRVYwneu59u-WXKhtkwjt3_Xx8WRncM6jyia-9-9USXd9dHAG8Cy7rvUCu0aGdzoc-HVBSFEMW-LMsTP0eUX5B05n0AJR3evIBNqtPQJASxri7Ar28ySLKoh0d_nSz-sQ3WGqmdmibgHNaQJtpF0wftVQsaWQaO86LKHR0eiHkgdd8H4jjafYUabNa9kazESFTykORGIfDWhgq4Jwq0liciOQzfNtIPuEtsuk74Egzn80eMcNQrchy3XL-xd9YzBfuRb6XdX4u9TmLN5tQj-gyRmJqiUb4pTixnMhkfCmVC6XggIXvaEsvpDzJ6yb8YDvouySHJzja-RsrhWyNiQ1vj62LzuqfEMioe6KG74_6VnSy8hlGu9R0vwthCqBrSA_a_CTVaWPp4A6RRAuD51Rpij4gPrcogSpHYyQ87MoixJz7RLt4eadszwnPWRrmhV3tdX4HmxZP6lWwJH5YNbp3ouAVVg9R5
 
 GET {{EventPlanner.API_HostAddress}}/api/workshops
 Accept: application/json
@@ -52,7 +52,27 @@ Content-Type: application/json
 POST {{EventPlanner.API_HostAddress}}/api/identity/login
 Content-Type: application/json
 {
-    "email": "owner@test.com",
+    "email": "testuser@test.com",
     "password": "Password1!"
 }
+###
+
+POST {{EventPlanner.API_HostAddress}}/api/reservations
+Content-Type: application/json
+
+{
+    "workshopId": 7,
+    "status": 0,
+    "reservedAt": "2025-05-04T12:00:00Z"
+}
+
+###
+
+
+GET {{EventPlanner.API_HostAddress}}/api/reservations/1
+
+###
+
+GET {{EventPlanner.API_HostAddress}}/api/reservations
+
 ###

@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 
 namespace EventPlanner.Application.Workshops.Commands.CreateWorkshop;
 
-public class CreateWorkshopCommandHandler(ILogger<GetAllWorkshopQueryHandler> logger,
+public class CreateWorkshopCommandHandler(ILogger<CreateWorkshopCommandHandler> logger,
     IMapper mapper,
     IWorkshopsRepository workshopsRepository,
     IUserContext userContext) : IRequestHandler<CreateWorkshopCommand, int>

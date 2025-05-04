@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace EventPlanner.Infrastructure.Seeders;
 
-internal class WorkshopSeeder(EventPlannerDbContext dbContext) : IWorkshopSeeder
+internal class WorkshopSeeder(EventPlannerDbContext dbContext) : IEventPlannerSeeder
 {
     public async Task Seed()
     {

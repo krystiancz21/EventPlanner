@@ -16,7 +16,7 @@ builder.Services.AddInfrastructure(builder.Configuration);
 var app = builder.Build();
 
 var scope = app.Services.CreateScope();
-var seeder = scope.ServiceProvider.GetRequiredService<IWorkshopSeeder>();
+var seeder = scope.ServiceProvider.GetRequiredService<IEventPlannerSeeder>();
 
 await seeder.Seed();
 

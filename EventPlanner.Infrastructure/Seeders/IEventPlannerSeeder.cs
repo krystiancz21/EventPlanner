@@ -1,6 +1,6 @@
 ﻿namespace EventPlanner.Infrastructure.Seeders;
 
-public interface IWorkshopSeeder
+public interface IEventPlannerSeeder
 {
     Task Seed();
 }

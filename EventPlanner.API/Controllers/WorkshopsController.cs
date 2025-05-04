@@ -5,6 +5,7 @@ using EventPlanner.Application.Workshops.Dtos;
 using EventPlanner.Application.Workshops.Queries.GetAllWorkshops;
 using EventPlanner.Application.Workshops.Queries.GetWorkshopById;
 using EventPlanner.Domain.Constants;
+using EventPlanner.Infrastructure.Authorization;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -59,6 +60,6 @@ public class WorkshopsController(IMediator mediator) : ControllerBase
     public async Task<IActionResult> CreateWorkshop([FromBody] CreateWorkshopCommand command)
     {
         var workshopId = await mediator.Send(command);
-        return CreatedAtAction(nameof(GetAll), new { id = workshopId }, null);
+        return CreatedAtAction(nameof(GetById), new { id = workshopId }, null);
     }
 }
