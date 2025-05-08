@@ -10,4 +10,5 @@ public class User : IdentityUser
 
     public List<Workshop> OwnedWorkshops { get; set; } = [];
     public List<Reservation> Reservations { get; set; } = [];
+    public List<Certificate> Certificates { get; set; } = [];
 }

@@ -13,4 +13,5 @@ public class Workshop
     public User Organizer { get; set; } = default!;
 
     public List<Reservation> Reservations { get; set; } = [];
+    public List<Certificate> Certificates { get; set; } = [];
 }
