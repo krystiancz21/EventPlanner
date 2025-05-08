@@ -35,9 +35,9 @@ internal class WorkshopSeeder(EventPlannerDbContext dbContext) : IEventPlannerSe
                 {
                     NormalizedName = UserRoles.User.ToUpper(),
                 },
-                new (UserRoles.Owner)
+                new (UserRoles.Trainer)
                 {
-                    NormalizedName = UserRoles.Owner.ToUpper(),
+                    NormalizedName = UserRoles.Trainer.ToUpper(),
                 },
                 new (UserRoles.Admin)
                 {

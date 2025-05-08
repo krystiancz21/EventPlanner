@@ -26,6 +26,20 @@ internal class ReservationsRepository(EventPlannerDbContext dbContext) : IReserv
         return reservation;
     }
 
+    public Task<Reservation?> GetByWorkshopIdAndUserId(int workshopId, string userId)
+    {
+        var existingReservation = dbContext.Reservations
+            .FirstOrDefaultAsync(r => r.WorkshopId == workshopId && r.UserId == userId);
+        return existingReservation;
+    }
+
+    public Task<int> GetReservationCountByWorkshopId(int workshopId)
+    {
+        var reservationCount = dbContext.Reservations
+            .CountAsync(r => r.WorkshopId == workshopId);
+        return reservationCount;
+    }
+
     public Task SaveChanges()
     => dbContext.SaveChangesAsync();
 }

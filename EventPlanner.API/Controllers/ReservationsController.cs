@@ -9,6 +9,7 @@ using EventPlanner.Application.Workshops.Dtos;
 using EventPlanner.Application.Workshops.Queries.GetWorkshopById;
 using EventPlanner.Domain.Constants;
 using EventPlanner.Domain.Entities;
+using EventPlanner.Domain.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

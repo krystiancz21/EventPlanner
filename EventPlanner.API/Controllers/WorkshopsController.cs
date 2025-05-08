@@ -56,7 +56,7 @@ public class WorkshopsController(IMediator mediator) : ControllerBase
     }
 
     [HttpPost]
-    [Authorize(Roles = UserRoles.Owner)]
+    [Authorize(Roles = UserRoles.Trainer)]
     public async Task<IActionResult> CreateWorkshop([FromBody] CreateWorkshopCommand command)
     {
         var workshopId = await mediator.Send(command);
