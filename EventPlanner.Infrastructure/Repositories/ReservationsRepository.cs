@@ -25,4 +25,7 @@ internal class ReservationsRepository(EventPlannerDbContext dbContext) : IReserv
         var reservation = await dbContext.Reservations.FirstOrDefaultAsync(w => w.Id == id);
         return reservation;
     }
+
+    public Task SaveChanges()
+    => dbContext.SaveChangesAsync();
 }

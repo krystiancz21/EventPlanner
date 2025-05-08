@@ -9,10 +9,7 @@ public class ReservationsProfile : Profile
     public ReservationsProfile()
     {
         CreateMap<Reservation, ReservationDto>();
-
         CreateMap<CreateReservationCommand, Reservation>();
-
-        //CreateMap<UpdateWorkshopCommand, Workshop>();
     }
 }
 

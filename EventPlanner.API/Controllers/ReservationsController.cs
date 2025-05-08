@@ -1,4 +1,6 @@
-﻿using EventPlanner.Application.Reservations.Commands.CreateReservation;
+﻿using EventPlanner.Application.Reservations.Commands.CancelReservation;
+using EventPlanner.Application.Reservations.Commands.ConfirmReservation;
+using EventPlanner.Application.Reservations.Commands.CreateReservation;
 using EventPlanner.Application.Reservations.Dtos;
 using EventPlanner.Application.Reservations.Queries.GetAllReservations;
 using EventPlanner.Application.Reservations.Queries.GetReservationById;
@@ -37,5 +39,21 @@ public class ReservationsController(IMediator mediator) : ControllerBase
     {
         var workshopId = await mediator.Send(command);
         return CreatedAtAction(nameof(GetById), new { id = workshopId }, null);
+    }
+
+    [HttpPatch("{id}/confirm")]
+    public async Task<IActionResult> ComfirmReservation([FromRoute] int id, [FromBody] ConfirmReservationCommand command)
+    {
+        command.ReservationId = id;
+        await mediator.Send(command);
+        return NoContent();
+    }
+
+    [HttpPatch("{id}/cancel")]
+    public async Task<IActionResult> CancelReservation([FromRoute] int id, [FromBody] CancelReservationCommand command)
+    {
+        command.ReservationId = id;
+        await mediator.Send(command);
+        return NoContent();
     }
 }

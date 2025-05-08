@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 
 namespace EventPlanner.Application.Reservations.Commands.CreateReservation;
 
-internal class CreateReservationCommandHandler(ILogger<CreateReservationCommandHandler> logger,
+public class CreateReservationCommandHandler(ILogger<CreateReservationCommandHandler> logger,
     IMapper mapper,
     IReservationsRepository reservationsRepository,
     IUserContext userContext) : IRequestHandler<CreateReservationCommand, int>

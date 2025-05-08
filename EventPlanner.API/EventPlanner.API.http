@@ -18,7 +18,7 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 {
   "title": "Konferencja Technologiczna 2021",
-  "description": "Wydarzenie poœwiêcone nowinkom technologicznym i innowacjom w bran¿y IT.",
+  "description": "Wydarzenie poï¿½wiï¿½cone nowinkom technologicznym i innowacjom w branï¿½y IT.",
   "location": "Warszawa, Centrum Konferencyjne XYZ",
   "date": "2025-04-29",
   "capacity": 300
@@ -29,7 +29,7 @@ PATCH {{EventPlanner.API_HostAddress}}/api/workshops/7
 Content-Type: application/json
 {
   "title": "Konferencja Technologiczna 2050",
-  "description": "Wydarzenie poœwiêcone nowinkom technologicznym i innowacjom w bran¿y IT.",
+  "description": "Wydarzenie poï¿½wiï¿½cone nowinkom technologicznym i innowacjom w branï¿½y IT.",
   "location": "Warszawa, Centrum Konferencyjne ZYX",
   "date": "2025-04-23",
   "capacity": 150
@@ -70,6 +70,14 @@ Content-Type: application/json
 
 
 GET {{EventPlanner.API_HostAddress}}/api/reservations/1
+
+###
+
+PATCH {{EventPlanner.API_HostAddress}}/api/reservations/1/confirm
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{}
 
 ###
 
