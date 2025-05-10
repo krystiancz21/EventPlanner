@@ -7,6 +7,7 @@ using EventPlanner.Infrastructure.Authorization.Services;
 using EventPlanner.Infrastructure.Persistence;
 using EventPlanner.Infrastructure.Repositories;
 using EventPlanner.Infrastructure.Seeders;
+using EventPlanner.Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -33,6 +34,9 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IEventPlannerSeeder, WorkshopSeeder>();
         services.AddScoped<IWorkshopsRepository, WorkshopsRepository>();
         services.AddScoped<IReservationsRepository, ReservationsRepository>();
+        services.AddScoped<ICertificateRepository, CertificateRepository>();
+
+        services.AddScoped<ICertificateGenerator, PdfCertificateGenerator>();
 
         services.AddAuthorizationBuilder()
             .AddPolicy(PolicyNames.HasNationality,
