@@ -37,6 +37,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<ICertificateRepository, CertificateRepository>();
 
         services.AddScoped<ICertificateGenerator, PdfCertificateGenerator>();
+        services.AddScoped<IEmailService, EmailService>();
 
         services.AddAuthorizationBuilder()
             .AddPolicy(PolicyNames.HasNationality,

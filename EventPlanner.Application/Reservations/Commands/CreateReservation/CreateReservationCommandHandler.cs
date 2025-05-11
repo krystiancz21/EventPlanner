@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using EventPlanner.Application.Models;
 using EventPlanner.Application.Users;
 using EventPlanner.Domain.Entities;
 using EventPlanner.Domain.Exceptions;
+using EventPlanner.Domain.Interfaces;
 using EventPlanner.Domain.Repositories;
 using MediatR;
 using Microsoft.Extensions.Logging;
@@ -12,6 +14,7 @@ public class CreateReservationCommandHandler(ILogger<CreateReservationCommandHan
     IMapper mapper,
     IReservationsRepository reservationsRepository,
     IWorkshopsRepository workshopRepository,
+    IEmailService emailService,
     IUserContext userContext) : IRequestHandler<CreateReservationCommand, int>
 {
     public async Task<int> Handle(CreateReservationCommand request, CancellationToken cancellationToken)
@@ -43,6 +46,16 @@ public class CreateReservationCommandHandler(ILogger<CreateReservationCommandHan
         reservation.UserId = currentUser.Id;
 
         int reservationId = await reservationsRepository.Create(reservation);
+
+        var emailData = new EmailDto
+        {
+            //To = currentUser.Email,
+            To = "delphia91@ethereal.email",
+            Subject = $"Potwierdzenie rezerwacji na warsztat: {workshop.Title}",
+            Body = $"Pamiętaj potwierdzić rezerwację na warsztat {workshop.Title}, który odbędzie się {workshop.Date.ToShortDateString()} o godzinie {workshop.Date.ToShortTimeString()}."
+        };
+
+        await emailService.SendEmailAsync(emailData.To, emailData.Subject, emailData.Body);
 
         return reservationId;
     }
