@@ -1,4 +1,5 @@
-﻿using EventPlanner.Domain.Entities;
+﻿using EventPlanner.Domain.Constants;
+using EventPlanner.Domain.Entities;
 
 namespace EventPlanner.Domain.Repositories;
 
@@ -9,4 +10,5 @@ public interface IWorkshopsRepository
     Task<int> Create(Workshop entity);
     Task Delete(Workshop entity);
     Task SaveChanges();
+    Task<(IEnumerable<Workshop>, int)> GetAllMatchingAsync(string? searchPhrase, int pageSize, int pageNumber, string? sortBy, SortDirection sortDirection);
 }

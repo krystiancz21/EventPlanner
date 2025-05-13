@@ -5,7 +5,6 @@ using EventPlanner.Application.Workshops.Dtos;
 using EventPlanner.Application.Workshops.Queries.GetAllWorkshops;
 using EventPlanner.Application.Workshops.Queries.GetWorkshopById;
 using EventPlanner.Domain.Constants;
-using EventPlanner.Infrastructure.Authorization;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -19,9 +18,9 @@ public class WorkshopsController(IMediator mediator) : ControllerBase
 {
     [HttpGet]
     [AllowAnonymous]
-    public async Task<ActionResult<IEnumerable<WorkshopDto>>> GetAll()
+    public async Task<ActionResult<IEnumerable<WorkshopDto>>> GetAll([FromQuery] GetAllWorkshopQuery query)
     {
-        var workshops = await mediator.Send(new GetAllWorkshopQuery());
+        var workshops = await mediator.Send(query);
         return Ok(workshops);
     }
 
