@@ -44,7 +44,7 @@ DELETE {{EventPlanner.API_HostAddress}}/api/workshops/7
 POST {{EventPlanner.API_HostAddress}}/api/identity/register
 Content-Type: application/json
 {
-    "email": "user@test.com",
+    "email": "newuserrr@test.com",
     "password": "Password1!"
 }
 ###

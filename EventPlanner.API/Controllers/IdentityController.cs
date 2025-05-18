@@ -1,6 +1,10 @@
 ﻿using EventPlanner.Application.Users.Commands.AssignUserRole;
 using EventPlanner.Application.Users.Commands.UnassignUserRole;
 using EventPlanner.Application.Users.Commands.UpdateUserDetails;
+using EventPlanner.Application.Users.Dtos;
+using EventPlanner.Application.Users.Queries.GetUserRole;
+using EventPlanner.Application.Workshops.Dtos;
+using EventPlanner.Application.Workshops.Queries.GetWorkshopById;
 using EventPlanner.Domain.Constants;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -34,5 +38,13 @@ public class IdentityController(IMediator mediator) : ControllerBase
     {
         await mediator.Send(command);
         return NoContent();
+    }
+
+    [HttpGet("role")]
+    [Authorize]
+    public async Task<ActionResult<UserRoleDto>> GetUserRole([FromQuery] GetUserRoleQuery query)
+    {
+        var result = await mediator.Send(query);
+        return Ok(result);
     }
 }
