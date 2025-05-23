@@ -4,6 +4,7 @@ using EventPlanner.Application.Workshops.Commands.UpdateWorkshop;
 using EventPlanner.Application.Workshops.Dtos;
 using EventPlanner.Application.Workshops.Queries.GetAllWorkshops;
 using EventPlanner.Application.Workshops.Queries.GetWorkshopById;
+using EventPlanner.Application.Workshops.Queries.GetMyWorkshops;
 using EventPlanner.Domain.Constants;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -31,6 +32,15 @@ public class WorkshopsController(IMediator mediator) : ControllerBase
     {
         var workshop = await mediator.Send(new GetWorkshopByIdQuery(id));
         return Ok(workshop);
+    }
+
+    [HttpGet("my")]
+    [ProducesResponseType(typeof(IEnumerable<WorkshopDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    public async Task<ActionResult<IEnumerable<WorkshopDto>>> GetMyWorkshops([FromQuery] GetMyWorkshopsQuery query, CancellationToken cancellationToken)
+    {
+        var result = await mediator.Send(query, cancellationToken);
+        return Ok(result);
     }
 
     [HttpPatch("{id}")]

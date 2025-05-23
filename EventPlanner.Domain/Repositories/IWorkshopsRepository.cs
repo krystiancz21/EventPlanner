@@ -11,4 +11,5 @@ public interface IWorkshopsRepository
     Task Delete(Workshop entity);
     Task SaveChanges();
     Task<(IEnumerable<Workshop>, int)> GetAllMatchingAsync(string? searchPhrase, int pageSize, int pageNumber, string? sortBy, SortDirection sortDirection);
+    Task<(IEnumerable<Workshop>, int)> GetWorkshopsByOwnerId(string userId, string? searchPhrase, int pageSize, int pageNumber, string? sortBy, SortDirection sortDirection);
 }
