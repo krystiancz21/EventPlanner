@@ -9,7 +9,7 @@ public class EventPlannerAuthorizationService(ILogger<EventPlannerAuthorizationS
     IUserContext userContext) : IEventPlannerAuthorizationService
 {
     public bool Authorize(Workshop workshop, ResourceOperation resourceOperation)
-    {
+    {        
         var user = userContext.GetCurrentUser();
 
         logger.LogInformation("Authorizing user {userEmail}, to {Operation} for workshop {WorkshopName}",
@@ -29,7 +29,7 @@ public class EventPlannerAuthorizationService(ILogger<EventPlannerAuthorizationS
             return true;
         }
 
-        if (resourceOperation == ResourceOperation.Read || resourceOperation == ResourceOperation.Create
+        if ((resourceOperation == ResourceOperation.Update || resourceOperation == ResourceOperation.Delete)
             && user.Id == workshop.OrganizerId)
         {
             logger.LogInformation("Workshop owner - successful authorization");
